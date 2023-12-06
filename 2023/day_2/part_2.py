@@ -37,13 +37,11 @@ import math
 from lib import Game, line_count
 
 
-
 def main():
-
     if len(sys.argv) != 2:
         print(f'usage: {sys.argv[0]} <filename>', file=sys.stderr)
         exit(1)
-    
+
     total = 0
 
     games: list[Game] = [None] * (line_count(sys.argv[1]) + 1)
@@ -52,9 +50,9 @@ def main():
         for idx, line in enumerate(f):
             games[idx] = Game.from_str(line)
 
-    if games[-1] is None: # off by one, if at all
+    if games[-1] is None:  # off by one, if at all
         games.pop()
-    
+
     for game in games:
         total += math.prod(game.cubes.values())
 
