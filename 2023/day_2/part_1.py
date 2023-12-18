@@ -52,10 +52,10 @@ import sys
 from lib import Game, line_count
 
 
-def main():
+def main() -> int:
     if len(sys.argv) != 2:
         print(f'usage: {sys.argv[0]} <filename>', file=sys.stderr)
-        exit(1)
+        return 1
 
     total = 0
 
@@ -74,6 +74,8 @@ def main():
 
     print(total)
 
+    return 0
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

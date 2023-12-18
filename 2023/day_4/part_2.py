@@ -54,7 +54,7 @@ from collections import defaultdict
 class Card:
     card_id: int
     my_nums: list[int]
-    win_nums: frozenset
+    win_nums: frozenset[int]
 
     def __str__(self) -> str:
         my_nums_str = f'[{", ".join(map(str, self.my_nums))}]'
@@ -79,10 +79,10 @@ class Card:
     @classmethod
     def from_string(cls, string: str, idx: int) -> Card:
         _, nums = string.split(': ')
-        win_nums, my_nums = nums.split(' | ')
+        win_nums_str, my_nums_str = nums.split(' | ')
 
-        win_nums = frozenset(map(int, win_nums.strip().replace('  ', ' ').split(' ')))
-        my_nums = list(map(int, my_nums.strip().replace('  ', ' ').split(' ')))
+        win_nums: frozenset[int] = frozenset(map(int, win_nums_str.strip().replace('  ', ' ').split(' ')))
+        my_nums: list[int] = list(map(int, my_nums_str.strip().replace('  ', ' ').split(' ')))
 
         return cls(card_id=idx + 1, my_nums=my_nums, win_nums=win_nums)
 

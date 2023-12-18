@@ -71,10 +71,10 @@ def main() -> int:
     with open(sys.argv[1], 'r') as f:
         for line in f:
             nums = line.split(': ')[-1]
-            win_nums, my_nums = nums.split(' | ')
+            win_nums_str, my_nums_str = nums.split(' | ')
 
-            win_nums = frozenset(map(int, win_nums.strip().replace('  ', ' ').split(' ')))
-            my_nums = list(map(int, my_nums.strip().replace('  ', ' ').split(' ')))
+            win_nums = frozenset(map(int, win_nums_str.strip().replace('  ', ' ').split(' ')))
+            my_nums = list(map(int, my_nums_str.strip().replace('  ', ' ').split(' ')))
 
             subset = win_nums.intersection(my_nums)
             subset_count = len(subset)
@@ -85,6 +85,8 @@ def main() -> int:
                 total += subset_count
 
     print(total)
+
+    return 0
 
 
 if __name__ == '__main__':

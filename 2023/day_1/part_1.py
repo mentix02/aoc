@@ -40,20 +40,27 @@ Consider your entire calibration document. What is the sum of all of the calibra
 
 import sys
 
+from typing import Optional
 
-def lmost_num(line: str) -> str:
+
+MaybeStr = Optional[str]
+
+
+def lmost_num(line: str) -> MaybeStr:
     for char in line:
         if char.isdigit():
             return char
+    return None
 
 
-def rmost_num(line: str) -> str:
+def rmost_num(line: str) -> MaybeStr:
     for char in reversed(line):
         if char.isdigit():
             return char
+    return None
 
 
-def pair(line: str) -> tuple[str, str]:
+def pair(line: str) -> tuple[MaybeStr, MaybeStr]:
     return lmost_num(line), rmost_num(line)
 
 

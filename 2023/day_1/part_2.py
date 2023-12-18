@@ -22,6 +22,7 @@ What is the sum of all of the calibration values?
 """
 
 import sys
+from typing import Optional
 
 strs_to_digits: dict[str, str] = {
     'one': '1',
@@ -37,26 +38,30 @@ strs_to_digits: dict[str, str] = {
 
 num_strs = strs_to_digits.keys()
 
+MaybeStr = Optional[str]
 
-def lmost_num(line: str) -> str:
+
+def lmost_num(line: str) -> MaybeStr:
     for start_idx in range(len(line)):
         if line[start_idx].isdigit():
             return line[start_idx]
         for num_str in num_strs:
             if line[start_idx : start_idx + len(num_str)].startswith(num_str):
                 return strs_to_digits[num_str]
+    return None
 
 
-def rmost_num(line: str) -> str:
+def rmost_num(line: str) -> MaybeStr:
     for end_idx in range(len(line) - 1, -1, -1):
         if line[end_idx].isdigit():
             return line[end_idx]
         for num_str in num_strs:
             if line[end_idx - len(num_str) + 1 : end_idx + 1].endswith(num_str):
                 return strs_to_digits[num_str]
+    return None
 
 
-def pair(line: str) -> tuple[str, str]:
+def pair(line: str) -> tuple[MaybeStr, MaybeStr]:
     return lmost_num(line), rmost_num(line)
 
 

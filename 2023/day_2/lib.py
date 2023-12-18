@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import subprocess
 
 
@@ -11,7 +13,7 @@ class Round:
         self.cubes = cubes
 
     @classmethod
-    def from_str(cls, line: str) -> 'Round':
+    def from_str(cls, line: str) -> Round:
         cubes: dict[str, int] = {}
 
         for cube_set in line.split('; '):
@@ -44,7 +46,7 @@ class Game:
                 self.cubes[colour] = max(count, self.cubes.get(colour, 0))
 
     @classmethod
-    def from_str(cls, line: str) -> 'Game':
+    def from_str(cls, line: str) -> Game:
         game_str, cube_str = line.split(': ')
         game_id = int(game_str.split()[-1])
 
